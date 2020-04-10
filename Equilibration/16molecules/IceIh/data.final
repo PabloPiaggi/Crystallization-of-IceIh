@@ -7,27 +7,14 @@ LAMMPS data file via write_data, version 19 Sep 2019, timestep = 500000
 16 angles
 1 angle types
 
--1.2272897295381657e-01 9.6061729729534839e+00 xlo xhi
-3.7021995107821404e-01 8.5065940489216132e+00 ylo yhi
-1.9814675069282472e-01 7.4768412493093699e+00 zlo zhi
+0.0 9.5368475 xlo xhi
+0.0 7.5213974 ylo yhi
+0.0 7.2890245 zlo zhi
 
 Masses
 
 1 1.00794
 2 15.9994
-
-Pair Coeffs # lj/cut/tip4p/long
-
-1 0 0
-2 0.21084 3.1668
-
-Bond Coeffs # harmonic
-
-1 450 0.9572
-
-Angle Coeffs # harmonic
-
-1 55 104.52
 
 Atoms # full
 
