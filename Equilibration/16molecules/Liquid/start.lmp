@@ -1,0 +1,43 @@
+echo both
+
+include		in.temp
+include		in.pressure
+include		in.seed
+units		real
+atom_style	full
+include		in.box
+include 	in.setup
+
+fix 		1 all shake 1e-6 200 0 b 1 a 1
+fix             2 all nph iso ${pressure} ${pressure} ${pressureDamp}
+fix             3 all temp/csvr ${temperature2} ${temperature2} ${tempDamp} ${seed}
+
+run             200000
+
+unfix		1
+unfix		2
+unfix		3
+
+fix 		1 all shake 1e-6 200 0 b 1 a 1
+fix             2 all nph iso ${pressure} ${pressure} ${pressureDamp}
+fix             3 all temp/csvr ${temperature2} ${temperature} ${tempDamp} ${seed}
+
+run             100000
+
+unfix		1
+unfix		2
+unfix		3
+
+include 	in.dump
+
+fix 		1 all shake 1e-6 200 0 b 1 a 1
+fix             2 all nph iso ${pressure} ${pressure} ${pressureDamp}
+fix             3 all temp/csvr ${temperature} ${temperature} ${tempDamp} ${seed}
+
+run             500000
+
+unfix		1
+unfix		2
+unfix		3
+
+write_data	data.final
