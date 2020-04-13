@@ -1,0 +1,23 @@
+echo both
+
+include		in.temp
+include		in.pressure
+include		in.seed
+units		real
+atom_style	full
+include		in.box
+include 	in.setup
+include 	in.dump
+
+fix 		1 all shake 1e-6 200 0 b 1 a 1
+fix             2 all nph aniso ${pressure} ${pressure} ${pressureDamp}
+fix             3 all temp/csvr ${temperature} ${temperature} ${tempDamp} ${seed}
+velocity 	all create ${temperature} ${seed} dist gaussian
+
+run             500000
+
+unfix		1
+unfix		2
+unfix		3
+
+write_data	data.final

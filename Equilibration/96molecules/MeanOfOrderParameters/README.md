@@ -20,5 +20,5 @@ Afterwards the script ```script.py``` generates the output in the table below.
 
 |               | Avg Kernel Ih | # molec Ih    | Avg Kernel Ic | # molec Ic    | Q6            |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Liquid        | 0.393         | 1.32          | 0.374         | 1.07          | 0.169         |
-| Ice Ih        | 0.596         | 13.98         | 0.480         | 6.79          | 0.408         |
+| Liquid        | 0.290         | 0.69          | 0.264         | 0.43          | 0.067         |
+| Ice Ih        | 0.782         | 94.58         | 0.573         | 67.85         | 0.392         |
