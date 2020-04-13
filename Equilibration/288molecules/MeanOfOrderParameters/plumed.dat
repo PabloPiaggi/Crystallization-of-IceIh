@@ -1,0 +1,33 @@
+# vim:ft=plumed
+
+vol: VOLUME
+
+ENVIRONMENTSIMILARITY ...
+ SPECIES=1-864:3
+ SIGMA=0.055
+ CRYSTAL_STRUCTURE=CUSTOM
+ LABEL=refcv
+ REFERENCE_1=../../../Environments/IceIhExtendedEnvironments/env1.pdb
+ REFERENCE_2=../../../Environments/IceIhExtendedEnvironments/env2.pdb
+ REFERENCE_3=../../../Environments/IceIhExtendedEnvironments/env3.pdb
+ REFERENCE_4=../../../Environments/IceIhExtendedEnvironments/env4.pdb
+ MORE_THAN={RATIONAL R_0=0.5 NN=12 MM=24}
+ MEAN
+... ENVIRONMENTSIMILARITY
+
+ENVIRONMENTSIMILARITY ...
+ SPECIES=1-864:3
+ SIGMA=0.055
+ CRYSTAL_STRUCTURE=CUSTOM
+ LABEL=refcv2
+ REFERENCE_1=../../../Environments/IceIcExtendedEnvironments/env1.pdb
+ REFERENCE_2=../../../Environments/IceIcExtendedEnvironments/env2.pdb
+ MORE_THAN={RATIONAL R_0=0.5 NN=12 MM=24}
+ MEAN
+... ENVIRONMENTSIMILARITY
+
+# Avoid other structures
+
+Q6 SPECIES=1-864:3 SWITCH={CUBIC D_0=0.3 D_MAX=0.35} VMEAN LABEL=q6
+
+PRINT STRIDE=1  ARG=* FILE=COLVAR

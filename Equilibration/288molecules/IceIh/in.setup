@@ -1,0 +1,14 @@
+variable	out_freq equal 500
+variable	out_freq2 equal 500
+
+timestep	2.0
+
+neigh_modify    delay 10 every 1
+
+include		in.tip4p
+
+thermo          ${out_freq}
+thermo_style 	custom step temp pe etotal epair evdwl ecoul ebond eangle elong etail press lx ly lz vol
+
+restart 	${out_freq} restart.lmp restart2.lmp
+

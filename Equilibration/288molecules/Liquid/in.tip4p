@@ -1,0 +1,20 @@
+# This is TIP4P/Ice
+
+# create groups ###
+group ox type 2
+group hy type 1
+
+# set charges - beside manually ###
+set group ox charge -1.1794
+set group hy charge 0.5897
+
+# ### TIP3P Potential Parameters ###
+pair_style lj/cut/tip4p/long 2 1 1 1 0.1577 8.5
+pair_coeff 1 1*2 0.000 0.000 
+pair_coeff 2 2 0.21084 3.1668
+bond_style  harmonic
+bond_coeff  1 450 0.9572
+angle_style harmonic
+angle_coeff 1 55 104.52
+kspace_style pppm/tip4p 1.0e-4 #final npt relaxation
+pair_modify tail yes

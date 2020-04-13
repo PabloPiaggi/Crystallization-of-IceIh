@@ -1,0 +1,28 @@
+# vim:ft=plumed
+
+ENVIRONMENTSIMILARITY ...
+ SPECIES=1-864:3
+ SIGMA=0.055
+ CRYSTAL_STRUCTURE=CUSTOM
+ LABEL=refcv
+ REFERENCE_1=../../../Environments/IceIhExtendedEnvironments/env1.pdb
+ REFERENCE_2=../../../Environments/IceIhExtendedEnvironments/env2.pdb
+ REFERENCE_3=../../../Environments/IceIhExtendedEnvironments/env3.pdb
+ REFERENCE_4=../../../Environments/IceIhExtendedEnvironments/env4.pdb
+ MORE_THAN={RATIONAL R_0=0.5 NN=12 MM=24}
+ MEAN
+... ENVIRONMENTSIMILARITY
+
+HISTOGRAM ...
+  DATA=refcv
+  GRID_MIN=-0.5
+  GRID_MAX=1.5
+  GRID_BIN=1000
+  BANDWIDTH=0.025
+  LABEL=hh
+  STRIDE=1
+... HISTOGRAM
+
+DUMPGRID GRID=hh FILE=histo STRIDE=100
+
+PRINT STRIDE=1  ARG=* FILE=COLVAR
