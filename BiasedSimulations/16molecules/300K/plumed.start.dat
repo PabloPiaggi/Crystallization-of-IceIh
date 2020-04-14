@@ -1,0 +1,58 @@
+# vim:ft=plumed
+
+vol: VOLUME
+
+ENVIRONMENTSIMILARITY ...
+ SPECIES=1-48:3
+ SIGMA=0.076
+ CRYSTAL_STRUCTURE=CUSTOM
+ LABEL=refcv
+ REFERENCE_1=../../../Environments/IceIhExtendedEnvironments/env1.pdb
+ REFERENCE_2=../../../Environments/IceIhExtendedEnvironments/env2.pdb
+ REFERENCE_3=../../../Environments/IceIhExtendedEnvironments/env3.pdb
+ REFERENCE_4=../../../Environments/IceIhExtendedEnvironments/env4.pdb
+ MORE_THAN={RATIONAL R_0=0.5 NN=15 MM=30}
+ MEAN
+... ENVIRONMENTSIMILARITY
+
+# Construct a bias potential using VES
+#
+# Basis functions
+
+bf1: BF_LEGENDRE ORDER=20 MINIMUM=0.0 MAXIMUM=16.0
+
+# Target distribution
+
+td_welltemp: TD_WELLTEMPERED BIASFACTOR=30
+
+# Expansion
+
+VES_LINEAR_EXPANSION ...
+ ARG=refcv.morethan
+ BASIS_FUNCTIONS=bf1
+ TEMP=300.0
+ GRID_BINS=300
+ TARGET_DISTRIBUTION=td_welltemp
+ LABEL=b1
+... VES_LINEAR_EXPANSION
+
+# Optimization algorithm
+
+OPT_AVERAGED_SGD ...
+  BIAS=b1
+  STRIDE=500
+  LABEL=o1
+  STEPSIZE=2.
+  FES_OUTPUT=500
+  BIAS_OUTPUT=500
+  TARGETDIST_OUTPUT=500
+  COEFFS_OUTPUT=100
+  TARGETDIST_STRIDE=500
+  MULTIPLE_WALKERS
+... OPT_AVERAGED_SGD
+
+Q6 SPECIES=1-48:3 SWITCH={CUBIC D_0=0.3 D_MAX=0.35} VMEAN LABEL=q6
+diff: MATHEVAL ARG=q6.vmean,refcv.mean FUNC=((x-0.15)/(0.4-0.15)-(y-0.4)/(0.6-0.4)) PERIODIC=NO
+UPPER_WALLS ARG=diff AT=0.4 KAPPA=50000 EXP=2 LABEL=uwall
+
+PRINT STRIDE=500  ARG=* FILE=COLVAR

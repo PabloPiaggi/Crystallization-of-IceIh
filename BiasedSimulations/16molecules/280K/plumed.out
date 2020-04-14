@@ -1,0 +1,146 @@
+PLUMED: PLUMED is starting
+PLUMED: Version: 2.7.0-dev (git: 8432eba) compiled on Oct 30 2019 at 18:34:09
+PLUMED: Please cite these papers when using PLUMED [1][2]
+PLUMED: For further information see the PLUMED web page at http://www.plumed.org
+PLUMED: Root: /home/ppiaggi/Programs/Plumed/plumed-install-intel/lib/plumed
+PLUMED: For installed feature, see /home/ppiaggi/Programs/Plumed/plumed-install-intel/lib/plumed/src/config/config.txt
+PLUMED: Molecular dynamics engine: LAMMPS
+PLUMED: Precision of reals: 8
+PLUMED: Running over 1 node
+PLUMED: Number of threads: 4
+PLUMED: Cache line size: 512
+PLUMED: Number of atoms: 48
+PLUMED: GROMACS-like replica exchange is on
+PLUMED: File suffix: .0
+PLUMED: FILE: plumed.dat
+PLUMED: Action RESTART
+PLUMED:   with label @0
+PLUMED:   MD code didn't require restart
+PLUMED:   Switching on restart
+PLUMED:   Restarting simulation: files will be appended
+PLUMED: Action VOLUME
+PLUMED:   with label vol
+PLUMED: Action REFCV
+PLUMED:   with label refcv
+PLUMED:   number of templates 4
+PLUMED:   number of vectors per template 17
+PLUMED:   targeting the CUSTOM crystal structure
+PLUMED:   representing local density as a sum of Gaussians with standard deviation 0.076000
+PLUMED:   maximum distance in the template is 0.458490
+PLUMED:   using a lambda value of 100.000000
+PLUMED:   keyword SPECIES takes atoms : 1 4 7 10 13 16 19 22 25 28 31 34 37 40 43 46 
+PLUMED:   added component to this action:  refcv.mean 
+PLUMED:   value refcv.mean is obtained by taking the 1th component and finding the mean value
+PLUMED:   added component to this action:  refcv.morethan 
+PLUMED:   value refcv.morethan is obtained by taking the 1th component and finding the number of values more than 0.5.  Using rational switching function with parameters d0=0 nn=15 mm=30
+PLUMED: Action BF_LEGENDRE
+PLUMED:   with label bf1
+PLUMED:   One-dimensional basis set
+PLUMED:    Description: Legendre polynomials
+PLUMED:    Type: Legendre
+PLUMED:    Order of basis set: 20
+PLUMED:    Number of basis functions: 21
+PLUMED:    Interval of basis set: 0.0 to 16.0
+PLUMED:    Description of basis functions:
+PLUMED:      0            L0(s)
+PLUMED:      1            L1(s)
+PLUMED:      2            L2(s)
+PLUMED:      3            L3(s)
+PLUMED:      4            L4(s)
+PLUMED:      5            L5(s)
+PLUMED:      6            L6(s)
+PLUMED:      7            L7(s)
+PLUMED:      8            L8(s)
+PLUMED:      9            L9(s)
+PLUMED:     10           L10(s)
+PLUMED:     11           L11(s)
+PLUMED:     12           L12(s)
+PLUMED:     13           L13(s)
+PLUMED:     14           L14(s)
+PLUMED:     15           L15(s)
+PLUMED:     16           L16(s)
+PLUMED:     17           L17(s)
+PLUMED:     18           L18(s)
+PLUMED:     19           L19(s)
+PLUMED:     20           L20(s)
+PLUMED: Action TD_WELLTEMPERED
+PLUMED:   with label td_welltemp
+PLUMED:   Well-tempered target distribution, see and cite [3][4]
+PLUMED: Action VES_LINEAR_EXPANSION
+PLUMED:   with label b1
+PLUMED:   with arguments refcv.morethan
+PLUMED:   added component to this action:  b1.bias 
+PLUMED:   VES bias, please read and cite [5]
+PLUMED:   KbT: 2.328049
+PLUMED:   using target distribution of type TD_WELLTEMPERED with label td_welltemp 
+PLUMED:   added component to this action:  b1.force2 
+PLUMED: Action OPT_DUMMY
+PLUMED:   with label o1
+PLUMED:   with stride 500
+PLUMED:   optimizing VES bias VES_LINEAR_EXPANSION with label b1: 
+PLUMED:    KbT: 2.328049
+PLUMED:   number of coefficients: 21
+PLUMED:   optimization performed using multiple walkers connected via MPI:
+PLUMED:    number of walkers: 4
+PLUMED:    walker number: 0
+PLUMED:    please see and cite [6]
+PLUMED:   Read in coefficients from file coeffs.data (read 21 of 21 values)
+PLUMED:   Optimization restarted at iteration 10000
+PLUMED:   Coefficients will be written out to file coeffs.data every 100 iterations
+PLUMED:   Output Components:
+PLUMED:    fake optimizer that does not update coefficients
+PLUMED:   can be used to monitor gradient and Hessian for debugging purposes
+PLUMED: Action Q6
+PLUMED:   with label q6
+PLUMED:   Steinhardt parameter of central atom and those within 0.05.  Using cubic switching function with parameters d0=0.3 dmax=0.35
+PLUMED:   Bibliography [7]
+PLUMED:   keyword SPECIES takes atoms : 1 4 7 10 13 16 19 22 25 28 31 34 37 40 43 46 
+PLUMED:   added component to this action:  q6.vmean 
+PLUMED:   value q6.vmean is obtained by taking the 1th component and finding the norm of the mean vector
+PLUMED: Action MATHEVAL
+PLUMED:   with label diff
+PLUMED:   with arguments q6.vmean refcv.mean
+PLUMED:   with function : ((x-0.15)/(0.4-0.15)-(y-0.4)/(0.6-0.4))
+PLUMED:   with variables : x y
+PLUMED:   function as parsed by lepton: (4*(-0.15+(x)))-(5*(-0.4+(y)))
+PLUMED:   derivatives as computed by lepton:
+PLUMED:     4
+PLUMED:     -5
+PLUMED: Action UPPER_WALLS
+PLUMED:   with label uwall
+PLUMED:   with arguments diff
+PLUMED:   added component to this action:  uwall.bias 
+PLUMED:   at 0.400000
+PLUMED:   with an offset 0.000000
+PLUMED:   with force constant 50000.000000
+PLUMED:   and exponent 2.000000
+PLUMED:   rescaled 1.000000
+PLUMED:   added component to this action:  uwall.force2 
+PLUMED: Action PRINT
+PLUMED:   with label @10
+PLUMED:   with stride 500
+PLUMED:   with arguments vol refcv.mean refcv.morethan b1.bias b1.force2 q6.vmean diff uwall.bias uwall.force2
+PLUMED:   on file COLVAR
+PLUMED:   with format  %f
+PLUMED: END FILE: plumed.dat
+PLUMED: Timestep: 0.002000
+PLUMED: KbT has not been set by the MD engine
+PLUMED: It should be set by hand where needed
+PLUMED: Relevant bibliography:
+PLUMED:   [1] The PLUMED consortium, Nat. Methods 16, 670 (2019)
+PLUMED:   [2] Tribello, Bonomi, Branduardi, Camilloni, and Bussi, Comput. Phys. Commun. 185, 604 (2014)
+PLUMED:   [3] Valsson and Parrinello, J. Chem. Theory Comput. 11, 1996-2002 (2015)
+PLUMED:   [4] Barducci, Bussi, and Parrinello, Phys. Rev. Lett. 100, 020603 (2008)
+PLUMED:   [5] Valsson and Parrinello, Phys. Rev. Lett. 113, 090601 (2014)
+PLUMED:   [6] Raiteri, Laio, Gervasio, Micheletti, and Parrinello, J. Phys. Chem. B 110, 3533 (2006)
+PLUMED:   [7] Tribello, Giberti, Sosso, Salvalaglio and Parrinello, J. Chem. Theory Comput. 13, 1317 (2017)
+PLUMED: Please read and cite where appropriate!
+PLUMED: Finished setup
+PLUMED:                                               Cycles        Total      Average      Minumum      Maximum
+PLUMED:                                                    1 25991.260618 25991.260618 25991.260618 25991.260618
+PLUMED: 1 Prepare dependencies                      41228001    90.504641     0.000002     0.000001     0.001269
+PLUMED: 2 Sharing data                              41228001   259.426865     0.000006     0.000005     0.000674
+PLUMED: 3 Waiting for data                          41228001   127.541804     0.000003     0.000002     0.000984
+PLUMED: 4 Calculating (forward loop)                41228001 23841.568744     0.000578     0.000521     0.042608
+PLUMED: 5 Applying (backward loop)                  41228001   498.463933     0.000012     0.000009     0.011430
+PLUMED: 6 Update                                    41228001   126.227087     0.000003     0.000002     2.100877

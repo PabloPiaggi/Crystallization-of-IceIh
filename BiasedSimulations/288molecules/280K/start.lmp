@@ -1,0 +1,26 @@
+echo both
+
+include		in.partitions
+include		in.temp
+include		in.pressure
+include		in.seed
+units		real
+atom_style	full
+include		in.box
+include 	in.setup
+
+include         in.dump
+
+timer           timeout 23:50:00 every 1000
+
+fix             1 all plumed plumedfile plumed.start.dat outfile plumed.out
+fix 		2 all shake 1e-6 200 0 b 1 a 1
+fix             3 all nph iso ${pressure} ${pressure} ${pressureDamp}
+fix             4 all temp/csvr ${temperature} ${temperature} ${tempDamp} ${seed}
+velocity 	all create ${temperature} ${seed} dist gaussian
+
+run             12500000 upto
+
+write_data	data.final.${pid}
+
+write_restart   restart.lmp.${pid}
