@@ -14,7 +14,7 @@ fix             2 all nph aniso ${pressure} ${pressure} ${pressureDamp}
 fix             3 all temp/csvr ${temperature} ${temperature} ${tempDamp} ${seed}
 velocity 	all create ${temperature} ${seed} dist gaussian
 
-run             500000
+run             1000
 
 unfix		1
 unfix		2

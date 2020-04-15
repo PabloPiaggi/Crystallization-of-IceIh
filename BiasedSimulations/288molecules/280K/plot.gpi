@@ -1,6 +1,0 @@
-pl "COLVAR.0" u 1:4 w p
-repl "COLVAR.1" u 1:4 w p
-repl "COLVAR.2" u 1:4 w p
-repl "COLVAR.3" u 1:4 w p
-
-pause -1
