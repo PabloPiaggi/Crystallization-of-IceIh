@@ -1,6 +1,8 @@
 # Melting temperature of a model of hexagonal ice from enhanced sampling molecular dynamics simulations
 ## Pablo Piaggi and Roberto Car
 
+[![plumID:20.010](https://www.plumed-nest.org/eggs/20/010/badge.svg)](https://www.plumed-nest.org/eggs/20/010/)
+
 This repository contains the input files to reproduce the results of the paper mentioned above. 
 
 Brief summary of the contents of each folder:
