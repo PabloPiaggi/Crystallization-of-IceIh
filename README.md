@@ -1,4 +1,4 @@
-# Melting temperature of a model of hexagonal ice from enhanced sampling molecular dynamics simulations
+# Phase equilibrium of liquid water and hexagonal ice from enhanced sampling molecular dynamics simulations
 ## Pablo Piaggi and Roberto Car
 
 This repository contains the input files to reproduce the results of the paper mentioned above.
