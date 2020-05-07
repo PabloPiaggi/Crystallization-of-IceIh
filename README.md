@@ -2,6 +2,7 @@
 ## Pablo Piaggi and Roberto Car
 
 [![plumID:20.010](https://www.plumed-nest.org/eggs/20/010/badge.svg)](https://www.plumed-nest.org/eggs/20/010/)
+[![arXiv](http://img.shields.io/badge/arXiv-2004.08465-B31B1B.svg)](https://arxiv.org/abs/2004.08465)
 
 This repository contains the input files to reproduce the results of the paper mentioned above. 
 
