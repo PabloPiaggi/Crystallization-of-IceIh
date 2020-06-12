@@ -1,6 +1,7 @@
-# Phase equilibrium of liquid water and hexagonal from ice enhanced sampling molecular dynamics simulations
+# Phase equilibrium of liquid water and hexagonal ice from enhanced sampling molecular dynamics simulations
 ## Pablo Piaggi and Roberto Car
-
+### J. Chem. Phys. 152, 204116 (2020)
+[![DOI](http://img.shields.io/badge/DOI-0.1063%2F5.0011140-blue)](https://doi.org/10.1063/5.0011140)
 [![plumID:20.010](https://www.plumed-nest.org/eggs/20/010/badge.svg)](https://www.plumed-nest.org/eggs/20/010/)
 [![arXiv](http://img.shields.io/badge/arXiv-2004.08465-B31B1B.svg)](https://arxiv.org/abs/2004.08465)
 
